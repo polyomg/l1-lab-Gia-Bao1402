@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách trạng thái - Form khác</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+  <div class="container">
+    <h2 class="text-center mb-4"></h2>Danh sách trạng thái</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped text-center align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th rowspan="2" class="align-middle">HỌ VÀ TÊN</th>
+            <th colspan="6">CÁC THUỘC TÍNH TRẠNG THÁI</th>
+          </tr>
+          <tr>
+            <th>Index</th>
+            <th>Count</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>Odd</th>
+            <th>Even</th>
+          </tr>
+        </thead>
+        <tbody>
+          <th:block th:each="staff, st : ${list}">
+            <!-- nếu là hàng lẻ thì thêm class table-danger, hàng chẵn thì table-info -->
+            <tr th:classappend="${st.odd} ? 'table-danger' : 'table-info'">
+              <td th:text="${#strings.capitalizeWords(staff.fullname)}"></td>
+              <td th:text="${st.index}"></td>
+              <td th:text="${st.count}"></td>
+              <td th:text="${st.first}"></td>
+              <td th:text="${st.last}"></td>
+              <td th:text="${st.odd}"></td>
+              <td th:text="${st.even}"></td>
+            </tr>
+          </th:block>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
